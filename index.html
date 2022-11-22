@@ -578,41 +578,41 @@ function sumit(){
 		//上传图片
 		let formData1 = new FormData();
 		formData1.append("file", $("#filewb")[0].files[0]);
-		$.ajax({
-			type:'POST',
-			url:"/ACS_GD/off/updateAvatar",
-			data:formData1,
-			cache: false,
-//      	   	async : false,
-			contentType:false,
-			processData:false,//这个很有必要，不然不行
-			dataType:"json",
-			mimeType:"multipart/form-data",
-			beforeSend: function () {
-				$("#spinner").show();
-            },
-			success:function(data){
-				if(data.errormsg != undefined && data.errormsg != null && data.errormsg != ''){
-					alert(data.errormsg);
-					falg = true;
-					$("#spinner").hide();
-					return false;
-				}else{
-					$("#ocaFacePic").val(data.fileName);
-					falg1 = true;
-					if(falg1 && falg2 && falg3){
-						submitAppointment();
-					}
-				}
+// 		$.ajax({
+// 			type:'POST',
+// 			url:"/ACS_GD/off/updateAvatar",
+// 			data:formData1,
+// 			cache: false,
+// //      	   	async : false,
+// 			contentType:false,
+// 			processData:false,//这个很有必要，不然不行
+// 			dataType:"json",
+// 			mimeType:"multipart/form-data",
+// 			beforeSend: function () {
+// 				$("#spinner").show();
+//             },
+// 			success:function(data){
+// 				if(data.errormsg != undefined && data.errormsg != null && data.errormsg != ''){
+// 					alert(data.errormsg);
+// 					falg = true;
+// 					$("#spinner").hide();
+// 					return false;
+// 				}else{
+// 					$("#ocaFacePic").val(data.fileName);
+// 					falg1 = true;
+// 					if(falg1 && falg2 && falg3){
+// 						submitAppointment();
+// 					}
+// 				}
 				
-			},
-			error:function(data){
-				$("#spinner").hide();
-				alert("正脸照片上传失败");
-				falg = true;
-				return false;
-			}
-		})
+// 			},
+// 			error:function(data){
+// 				$("#spinner").hide();
+// 				alert("正脸照片上传失败");
+// 				falg = true;
+// 				return false;
+// 			}
+// 		})
 	}
 	
 	
@@ -632,39 +632,39 @@ function sumit(){
 		formData3.append("file", $("#filewb2")[0].files[0]);
 		console.log("formData3");
 		console.log(formData3);
-		$.ajax({
-			type:'POST',
-			url:"/ACS_GD/off/updateAvatar",
-			data:formData3,
-//      	   	async : false,
-			contentType:false,
-			processData:false,//这个很有必要，不然不行
-			dataType:"json",
-			mimeType:"multipart/form-data",
-			beforeSend: function () {
-				$("#spinner").show();
-            },
-			success:function(data){
-				if(data.errormsg != undefined && data.errormsg != null && data.errormsg != ''){
-					alert(data.errormsg);
-					falg = true;
-					$("#spinner").hide();
-					return false;
-				}else{
-					falg3 = true;
-					$("#ocaVaccinescode").val(data.fileName);
-					if(falg1 && falg2 && falg3){
-						submitAppointment();
-					}
-				}
-			},
-			error:function(data){
-				$("#spinner").hide();
-				alert("疫苗信息上传失败");
-				falg = true;
-				return false;
-			}
-		})
+// 		$.ajax({
+// 			type:'POST',
+// 			url:"/ACS_GD/off/updateAvatar",
+// 			data:formData3,
+// //      	   	async : false,
+// 			contentType:false,
+// 			processData:false,//这个很有必要，不然不行
+// 			dataType:"json",
+// 			mimeType:"multipart/form-data",
+// 			beforeSend: function () {
+// 				$("#spinner").show();
+//             },
+// 			success:function(data){
+// 				if(data.errormsg != undefined && data.errormsg != null && data.errormsg != ''){
+// 					alert(data.errormsg);
+// 					falg = true;
+// 					$("#spinner").hide();
+// 					return false;
+// 				}else{
+// 					falg3 = true;
+// 					$("#ocaVaccinescode").val(data.fileName);
+// 					if(falg1 && falg2 && falg3){
+// 						submitAppointment();
+// 					}
+// 				}
+// 			},
+// 			error:function(data){
+// 				$("#spinner").hide();
+// 				alert("疫苗信息上传失败");
+// 				falg = true;
+// 				return false;
+// 			}
+// 		})
 	}
 	
 	if(falg){
@@ -683,39 +683,8 @@ function sumit(){
 		console.log("formData2");
 		console.log(formData2);
 	
-		$.ajax({
-			type:'POST',
-			url:"/ACS_GD/off/updateAvatar",
-			data:formData2,
-//      	   	async : false,
-			contentType:false,
-			processData:false,//这个很有必要，不然不行
-			dataType:"json",
-			mimeType:"multipart/form-data",
-			beforeSend: function () {
-				$("#spinner").show();
-        },
-			success:function(data){
-				if(data.errormsg != undefined && data.errormsg != null && data.errormsg != ''){
-					alert(data.errormsg);
-					falg = true;
-					$("#spinner").hide();
-					return false;
-				}else{
-					falg2 = true;
-					$("#ocaUserhealthcode").val(data.fileName);
-					if(falg1 && falg2 && falg3){
-						submitAppointment();
-					}
-				}
-			},
-			error:function(data){
-				$("#spinner").hide();
-				alert("健康码上传失败");
-				falg = true;
-				return false;
-			}
-		})
+
+	
 	}
 	
 	
@@ -724,27 +693,27 @@ function sumit(){
 
 function submitAppointment() {
 	
-	$.ajax({
-		url:"/ACS_GD/off/submitAppointment",
-		data:$("#dataFrom").serialize(),
-		type : "POST",
-		dataType : "json",
-		success:function(obj){
-			if(obj > 0){
-				alert("申请成功");
-				document.getElementById("dataFrom").reset();
-				qingli();
-				qingli1();
-			}else{
-				alert("申请异常");
-			}
-			$("#spinner").hide();
-		},
- 	   	error : function(){ 
-		   alert("操作异常，请联系管理员");
-		$("#spinner").hide();
-	   	}
-	})
+	// $.ajax({
+	// 	url:"/ACS_GD/off/submitAppointment",
+	// 	data:$("#dataFrom").serialize(),
+	// 	type : "POST",
+	// 	dataType : "json",
+	// 	success:function(obj){
+	// 		if(obj > 0){
+	// 			alert("申请成功");
+	// 			document.getElementById("dataFrom").reset();
+	// 			qingli();
+	// 			qingli1();
+	// 		}else{
+	// 			alert("申请异常");
+	// 		}
+	// 		$("#spinner").hide();
+	// 	},
+ 	//    	error : function(){ 
+	// 	   alert("操作异常，请联系管理员");
+	// 	$("#spinner").hide();
+	//    	}
+	// })
 	
 }
 </script>
