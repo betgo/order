@@ -371,6 +371,14 @@ font-size:12px;
 						<span class="spansp">车牌号</span><span class="tishsi" id="requiredFalg"></span>
 						<input class="inputsp" type="text" id="ocaLicensePlate" name="ocaLicensePlate" placeholder="请输入车牌号">
 					</div>
+					<div class="sp_in">
+						<span class="spansp">邀请人</span><span class="tishsi" id="requiredFalg"></span>
+						<input class="inputsp" type="text" id="PiName" name="PiName" placeholder="请输入邀请人">
+					</div>
+					<div class="sp_in">
+						<span class="spansp">邀请人部门</span><span class="tishsi" id="requiredFalg"></span>
+						<input class="inputsp" type="text" id="DepartmentName" name="DepartmentName" placeholder="请输入邀请人部门">
+					</div>
 					<div class="sp_in" style="text-align: center;">
 						<button class="infobutton" type="button" onclick="sumit()">提交申请</button>
 					</div>
@@ -481,7 +489,6 @@ function qingli2() {
 
 
 function sumit(){
-	
 	$("#spinner").show();
 	var ocaInvitationCode = $("#ocaInvitationCode").val();
 	if(ocaInvitationCode == ""){
@@ -535,17 +542,17 @@ function sumit(){
 		$("#tempEndDate").val(orderEndTime);
 	}
 	var ocaUserState = $("input:checkbox[name='ocaUserState']:checked").length;
-	if(ocaUserState == "" || ocaUserState <= 0){
-		alert("至少选择一个当前身体状态");
-		$("#spinner").hide();
-		return false;
-	}
-	var ocaUserepidemic = $("input:checkbox[name='ocaUserepidemic']:checked").length;
-	if(ocaUserepidemic == "" || ocaUserepidemic <= 0){
-		alert("至少选择一个疫情接触情况");
-		$("#spinner").hide();
-		return false;
-	}
+	// if(ocaUserState == "" || ocaUserState <= 0){
+	// 	alert("至少选择一个当前身体状态");
+	// 	$("#spinner").hide();
+	// 	return false;
+	// }
+	// var ocaUserepidemic = $("input:checkbox[name='ocaUserepidemic']:checked").length;
+	// if(ocaUserepidemic == "" || ocaUserepidemic <= 0){
+	// 	alert("至少选择一个疫情接触情况");
+	// 	$("#spinner").hide();
+	// 	return false;
+	// }
 	var ocaSubjectMatter = $("#ocaSubjectMatter").val();
 	if(ocaSubjectMatter == ""){
 		alert("请填写进校原因/目的");
@@ -569,15 +576,17 @@ function sumit(){
 	var falg1 = false;
 	var falg2 = false;
 	var falg3 = false;
-	var isfile = $("#filewb").get(0).files[0];
-	if (!isfile){
-		alert("请上传正脸照片！！！");
-		$("#spinner").hide();
-		return false;
-	}else{
-		//上传图片
-		let formData1 = new FormData();
-		formData1.append("file", $("#filewb")[0].files[0]);
+	submitAppointment()
+	// var isfile = $("#filewb").get(0).files[0];
+	// if (!isfile){
+	// 	alert("请上传正脸照片！！！");
+	// 	$("#spinner").hide();
+	// 	return false;
+	// }else{
+	// 	//上传图片
+	// 	let formData1 = new FormData();
+	// 	formData1.append("file", $("#filewb")[0].files[0]);
+	// 	submitAppointment();
 // 		$.ajax({
 // 			type:'POST',
 // 			url:"/ACS_GD/off/updateAvatar",
@@ -613,25 +622,25 @@ function sumit(){
 // 				return false;
 // 			}
 // 		})
-	}
+	// }
 	
 	
 	
-	if(falg){
-		$("#spinner").hide();
-		return false;
-	}
-	var isfile2 = $("#filewb2").get(0).files[0];
-	if (!isfile2){
-		alert("请上传疫苗信息！！！");
-		$("#spinner").hide();
-		return false;
-	}else{
-		//上传图片
-		let formData3 = new FormData();
-		formData3.append("file", $("#filewb2")[0].files[0]);
-		console.log("formData3");
-		console.log(formData3);
+	// if(falg){
+	// 	$("#spinner").hide();
+	// 	return false;
+	// }
+	// var isfile2 = $("#filewb2").get(0).files[0];
+	// if (!isfile2){
+	// 	alert("请上传疫苗信息！！！");
+	// 	$("#spinner").hide();
+	// 	return false;
+	// }else{
+	// 	//上传图片
+	// 	let formData3 = new FormData();
+	// 	formData3.append("file", $("#filewb2")[0].files[0]);
+	// 	console.log("formData3");
+	// 	console.log(formData3);
 // 		$.ajax({
 // 			type:'POST',
 // 			url:"/ACS_GD/off/updateAvatar",
@@ -665,34 +674,57 @@ function sumit(){
 // 				return false;
 // 			}
 // 		})
-	}
+	// }
 	
-	if(falg){
-		$("#spinner").hide();
-		return false;
-	}
-	var isfile1 = $("#filewb1").get(0).files[0];
-	if (!isfile1){
-		alert("请上传健康码！！！");
-		$("#spinner").hide();
-		return false;
-	}else{
-		//上传图片
-		let formData2 = new FormData();
-		formData2.append("file", $("#filewb1")[0].files[0]);
-		console.log("formData2");
-		console.log(formData2);
+	// if(falg){
+	// 	$("#spinner").hide();
+	// 	return false;
+	// }
+	// var isfile1 = $("#filewb1").get(0).files[0];
+	// if (!isfile1){
+	// 	alert("请上传健康码！！！");
+	// 	$("#spinner").hide();
+	// 	return false;
+	// }else{
+	// 	//上传图片
+	// 	let formData2 = new FormData();
+	// 	formData2.append("file", $("#filewb1")[0].files[0]);
+	// 	console.log("formData2");
+	// 	console.log(formData2);
 	
-
-	
-	}
+	// }
 	
 	
 }
 
-
+$.fn.parseForm=function(){
+    var serializeObj={};
+    var array=this.serializeArray();
+    var str=this.serialize();
+    $(array).each(function(){
+        if(serializeObj[this.name]){
+            if($.isArray(serializeObj[this.name])){
+                serializeObj[this.name].push(this.value);
+            }else{
+                serializeObj[this.name]=[serializeObj[this.name],this.value];
+            }
+        }else{
+            serializeObj[this.name]=this.value;
+        }
+    });
+    return serializeObj;
+};
 function submitAppointment() {
-	
+	var encode = $("#dataFrom").serialize()
+	var decode = decodeURIComponent(encode)
+	console.log(encode,decode);
+	console.log($("#dataFrom").parseForm());
+	let info = $("#dataFrom").parseForm()
+	window.sessionStorage.setItem(info.ocaUserNo,JSON.stringify(info))
+	setTimeout(()=>{
+		$("#spinner").hide();
+		return false;
+	},1000)
 	// $.ajax({
 	// 	url:"/ACS_GD/off/submitAppointment",
 	// 	data:$("#dataFrom").serialize(),

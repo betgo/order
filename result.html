@@ -167,7 +167,7 @@ font-size:12px;
 				<button class="infobutton" onclick="query()">查询</button>
 			</div>
 			<div id="content" style="display: none;"><div style="margin-top: 15px">
-				<div class="jieguoDiv">
+				<!-- <div class="jieguoDiv">
 					<table>
 						<tbody><tr><td colspan="2" style="font-size: initial;font-weight: bold;color: black;">姓名：xxx</td></tr>
 						<tr><td colspan="2" style="font-size: initial;font-weight: bold;color: black;">身份证号：xxxxx4</td></tr>
@@ -182,7 +182,7 @@ font-size:12px;
 					</tbody></table>
 					<div id="steps0"><div class="steps steps-horizontal"><div class="step step-default-class step-finish-class" style="flex-basis:50%;"><div class="step-line-box" style="order:0"><div class="step-line step-finish-line-bg"></div><div class="step-icon "><div class="step-icon-number">1</div></div></div><div class="step-title" style="order:1">邀请人审核</div><div class="step-description" style="order:2"></div></div><div class="step step-default-class step-finish-class" style="flex-basis:50%;"><div class="step-line-box" style="order:0"><div class="step-line step-finish-line-bg"></div><div class="step-icon "><div class="step-icon-number">2</div></div></div><div class="step-title" style="order:1">部门领导审核</div><div class="step-description" style="order:2"></div></div><div class="step step-default-class step-finish-class" style="flex-basis: auto!important;flex-shrink: 0;flex-grow: 0;max-width:33.333333333333336%;"><div class="step-line-box" style="order:0"><div class="step-line "></div><div class="step-icon "><div class="step-icon-number">3</div></div></div><div class="step-title" style="order:1">完成</div><div class="step-description" style="order:2"></div></div></div></div>
 				</div>
-			</div>
+			</div> -->
 			<!-- <div style="margin-top: 15px">
 				<div class="jieguoDiv">
 					<table>
@@ -240,8 +240,8 @@ function onClick(id) {
 }
 
 function stepsIndex(index,value){
-	var ocaStatus = value.oca_Status;
-	var ocaAuditorStatus = value.oca_Auditor_Status;
+	var ocaStatus = 1;
+	var ocaAuditorStatus = 1;
 	steps({
 	    el: "#steps"+index,
 	    data: [
@@ -255,12 +255,41 @@ function stepsIndex(index,value){
 }
 $("#content").hide();
 function query(){
+	$("#content").empty();
 	var ocaUserNo = $("#ocaUserNo").val();
 	if(ocaUserNo == ""){
 		return false;
 	}
 	$("#content").show();
-
+	var rawInfo = sessionStorage.getItem(ocaUserNo)
+	
+	var value = JSON.parse(rawInfo)
+	console.log(value);
+	if(value){
+		
+		var msg = "完成";
+					$("#content").append("<div style=\"margin-top: 15px\">\r\n" + 
+				"				<div class=\"jieguoDiv\">\r\n" + 
+				"					<table>\r\n" + 
+				"						<tr><td colspan=\"2\" style=\"font-size: initial;font-weight: bold;color: black;\">姓名："+(value.ocaUserName == null ? "" : value.ocaUserName)+"</td></tr>\r\n" + 
+				"						<tr><td colspan=\"2\" style=\"font-size: initial;font-weight: bold;color: black;\">身份证号："+(value.ocaUserNo == null ? "" : value.ocaUserNo)+"</td></tr>\r\n" + 
+				"						<tr><td colspan=\"2\" style=\"font-size: initial;font-weight: bold;color: black;\">预约类型："+(value.ocaCheckerType == 1 ? "临时进校" :"合作单位" )+"</td></tr>\r\n" + 
+				"						<tr><td colspan=\"2\">申请入校日期："+(new Date(value.ocaStartDate).format("yyyy-MM-dd hh:mm:ss"))+"</td></tr>\r\n" + 
+				"						<tr><td colspan=\"2\">申请离校时间："+(new Date(value.ocaEndDate).format("yyyy-MM-dd hh:mm:ss"))+"</td></tr>\r\n" + 
+				"						<tr><td colspan=\"2\">入校地点："+(value.ocaPlaceOfAdmission == null ? "" : value.ocaPlaceOfAdmission)+"</td></tr>\r\n" + 
+				(value.ocaUserWay == "驱车前往" ? "<tr><td>进校方式：驱车前往</td><td>车牌号："+(value.ocaLicensePlate)+"</td></tr>\r\n" : "") +
+				(value.ocaUserWay == "步行前往" ? "<tr><td colspan=\"2\">进校方式：徒步前往</td></tr>\r\n" : "") +
+				"						<tr><td colspan=\"2\" style=\"font-size: initial;font-weight: bold;color: black;\">邀请人："+(value.PiName == null ? "" :value.PiName )+"</td></tr>\r\n" + 
+				"						<tr><td colspan=\"2\" style=\"font-size: initial;font-weight: bold;color: black;\">邀请人部门："+(value.DepartmentName == null ? "" :value.DepartmentName )+"</td></tr>\r\n" + 
+								
+				"						<tr><td colspan=\"2\">审核进度："+msg+"</td></tr>\r\n" + 
+				"					</table>\r\n" + 
+				"					<div id=\"steps"+0+"\"></div>\r\n" + 
+				"				</div>\r\n" + 
+				"			</div>");
+				stepsIndex(0,value);
+	}
+	
 	// $.ajax({
 	// 	url:"/ACS_GD/off/queryOffCampusAppointment",
 	// 	data:{"ocaUserNo":ocaUserNo},
@@ -310,6 +339,12 @@ function query(){
 	//    	}
 	// })
 }
+function getUrlParam(name) {
+     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+     var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+     if (r != null) return unescape(r[2]); return null; //返回参数值
+}
+
 Date.prototype.format = function (fmt) {
 	var o = {
 	"M+": this.getMonth() + 1, //月份
