@@ -218,137 +218,12 @@ font-size:12px;
 			<form id="dataFrom" οnsubmit="return false">
 				<div>
 					<div class="sp_in">
-						<span class="spansp">邀请码</span><span class="tishsi">*</span>
-						<input class="inputsp" type="text" id="ocaInvitationCode" name="ocaInvitationCode" placeholder="请输入邀请码">
-						<input class="inputsp" type="hidden" id="ocaCheckerType" name="ocaCheckerType" value="1">
-					</div>
-					<div class="sp_in">
 						<span class="spansp">申请人姓名</span><span class="tishsi">*</span>
 						<input class="inputsp" type="text" id="ocaUserName" name="ocaUserName" placeholder="请输入姓名">
 					</div>
 					<div class="sp_in">
-						<span class="spansp">性别</span>
-						<p>
-							<input type="radio" name="ocaUserSex" checked="checked" value="男">男
-							<input style="margin-left: 18px;" type="radio" name="ocaUserSex" value="女">女
-						</p>
-					</div>
-					<div class="sp_in">
-						<span class="spansp">手机号</span><span class="tishsi">*</span>
-						<input class="inputsp" type="text" id="ocaUserPhone" name="ocaUserPhone" placeholder="请输入手机号">
-					</div>
-					<div class="sp_in">
 						<span class="spansp">申请人身份证号</span><span class="tishsi">*</span>
 						<input class="inputsp" type="text" id="ocaUserNo" name="ocaUserNo" placeholder="请输入身份证号">
-					</div>
-					<div class="sp_in">
-						<span class="spansp">申请进校时间</span><span class="tishsi">*</span>
-						<div><input class="inputsp yyDate" type="text" id="ocaStartDate" placeholder="申请进校日期" readonly="readonly">
-						<input type="hidden" id="tempStartDate" name="ocaStartDate">
-						<!-- <input id="startTime" class="inputsp mytimepicker" value="00:30:59" readonly="readonly"> --></div>
-					</div>
-					<div class="sp_in">
-						<span class="spansp">申请离校时间</span><span class="tishsi">*</span>
-						<div><input class="inputsp yyDate" type="text" id="ocaEndDate" placeholder="申请离校日期" readonly="readonly">
-						<input type="hidden" id="tempEndDate" name="ocaEndDate">
-						<!-- <input id="endTime" class="inputsp mytimepicker" value="00:30:59" readonly="readonly"> --></div>
-					</div>
-					<div class="sp_in">
-						<span class="spansp">上传正脸照片</span><span class="tishsi">*</span>
-						<div id="imgPreview" class="imgPreview">
-							 <div class="qlClass" onclick="qingli()"><i class="fa fa-times" aria-hidden="true"></i></div>
-							 <div id="prompt3" class="prompt3" style="z-index: 1">
-								 <span id="imgSpan" class="imgSpan">
-								 点击上传
-								 <br>
-								 </span>
-								 <input type="file" id="filewb" class="filepath" onchange="changepic()" accept="image/*" capture="camera">
-								 <input type="hidden" id="ocaFacePic" name="ocaFacePic">
-								 <input type="hidden" id="ocaFaceBase" name="ocaFaceBase">
-							 </div>
-							 <img src="./移动端-校外预约信息_files/register.jsp" id="img3" class="img3">
-						</div>
-					</div>
-					<div class="sp_in">
-						<span class="spansp" style="color: red;">上传24小时内核酸检测阴性证明<br>（满足7天在沪要求，进校时必须持24小时核酸阴性报告）</span><span class="tishsi">*</span>
-						<div id="imgPreview1" class="imgPreview">
-							 <div class="qlClass" onclick="qingli1()"><i class="fa fa-times" aria-hidden="true"></i></div>
-							 <div id="prompt4" class="prompt3" style="z-index: 1">
-								 <span id="imgSpan1" class="imgSpan">
-								 点击上传
-								 <br>
-								 </span>
-								 <input type="file" id="filewb1" class="filepath" onchange="clickThis()" accept="image/*">
-								 <input type="hidden" id="ocaUserhealthcode" name="ocaUserhealthcode">
-								 <input type="hidden" id="ocaUserhealthcodeBase" name="ocaUserhealthcodeBase">
-							 </div>
-							 <img src="./移动端-校外预约信息_files/register.jsp" id="img4" class="img3">
-						</div>
-					</div>
-					
-					<div class="sp_in">
-						<span class="spansp">上传行程码</span><span class="tishsi">*</span>
-						<div id="imgPreview2" class="imgPreview">
-							 <div class="qlClass" onclick="qingli2()"><i class="fa fa-times" aria-hidden="true"></i></div>
-							 <div id="prompt5" class="prompt3" style="z-index: 1">
-								 <span id="imgSpan2" class="imgSpan">
-								 点击上传
-								 <br>
-								 </span>
-								 <input type="file" id="filewb2" class="filepath" onchange="clickvaccines()" accept="image/*">
-								 <input type="hidden" id="ocaVaccinescode" name="ocaVaccinescode">
-								 <input type="hidden" id="ocaVaccinescodeBase" name="ocaVaccinescodeBase">
-							 </div>
-							 <img src="./移动端-校外预约信息_files/register.jsp" id="img5" class="img3">
-						</div>
-					</div>
-					
-					<div class="sp_in">
-						<span class="spansp">当前身体状态</span><span class="tishsi">*</span>
-						<p>
-							<input class="inputbox" type="checkbox" name="ocaUserState" value="发烧（≥37.3度）">发烧（≥37.3度）
-						</p>
-						<p>
-							<input class="inputbox" type="checkbox" name="ocaUserState" value="咳嗽">咳嗽
-						</p>
-						<p>
-							<input class="inputbox" type="checkbox" name="ocaUserState" value="乏力">乏力
-						</p>
-						<p>
-							<input class="inputbox" type="checkbox" name="ocaUserState" value="呼吸困难">呼吸困难
-						</p>
-						<p>
-							<input class="inputbox" type="checkbox" name="ocaUserState" value="其他不适症状">其他不适症状
-						</p>
-						<p>
-							<input class="inputbox" type="checkbox" name="ocaUserState" value="无任何不适">无任何不适
-						</p>
-					</div>
-					<div style="padding: 15px 0px 8px 18px;color: #b71b30;font-weight: bold;border-bottom: 1px solid #b71b30;"><span>疫情防控校外进校报备人员调查信息</span></div>
-					<div class="sp_in">
-						<span class="spansp">近14天疫情接触情况</span><span class="tishsi">*</span>
-						
-						<p>
-							<input class="inputbox" type="checkbox" name="ocaUserepidemic" value="近14天内本人或同居家属是否有疫情中高风险地区的相关旅居史、途径史">近14天内本人或同居家属是否有疫情中高风险地区的相关旅居史、途径史
-						</p>
-						<p>
-							<input class="inputbox" type="checkbox" name="ocaUserepidemic" value="低风险区域人员是否未按照规定进行三天两测核酸检测（间隔24小时）且无异常"><b>低风险区域人员是否未按照规定进行三天两测核酸检测（间隔24小时）且无异常</b>
-						</p>
-						<p>
-							<input class="inputbox" type="checkbox" name="ocaUserepidemic" value="本人或同居家属是否与疑似新冠肺炎患者、确诊新冠肺炎患者接触史，或密接人员的密接史">本人或同居家属是否与疑似新冠肺炎患者、确诊新冠肺炎患者接触史，或密接人员的密接史
-						</p>
-						<p>
-							<input class="inputbox" type="checkbox" name="ocaUserepidemic" value="是否21天内境外返沪人员">是否21天内境外返沪人员
-						</p>
-						<p>
-							<input class="inputbox" type="checkbox" name="ocaUserepidemic" value="以上接触均无">以上接触均无
-						</p>
-						<div style="font-size: 12px;color: #a5a5a5;padding-top: 8px;color: red;"><b>注：1.中高低风险地区查询：关注"上海本地宝"或"上海发布"微信公众号，输入框回复“风险”，可及时查看全国各地疫情风险等级及地区名单。包括所在地的县（县级市）、区。<br>
-							2.“途径”为乘坐交通工具且下交通工具的。</b></div>
-					</div>
-					<div class="sp_in">
-						<span class="spansp">来访单位</span><span class="tishsi">*</span><span style="color: red;">（如无单位请填写来访目的）</span>
-						<input class="inputsp" type="text" id="ocaSubjectMatter" name="ocaSubjectMatter" placeholder="请输入来访单位">
 					</div>
 					<div class="sp_in">
 						<span class="spansp">入校地点</span><span class="tishsi">*</span>
@@ -366,10 +241,6 @@ font-size:12px;
 							<option value="步行前往">步行前往</option>
 							<option value="驱车前往">驱车前往</option>
 						</select>
-					</div>
-					<div class="sp_in">
-						<span class="spansp">车牌号</span><span class="tishsi" id="requiredFalg"></span>
-						<input class="inputsp" type="text" id="ocaLicensePlate" name="ocaLicensePlate" placeholder="请输入车牌号">
 					</div>
 					<div class="sp_in">
 						<span class="spansp">邀请人</span><span class="tishsi" id="requiredFalg"></span>
@@ -490,92 +361,7 @@ function qingli2() {
 
 function sumit(){
 	$("#spinner").show();
-	var ocaInvitationCode = $("#ocaInvitationCode").val();
-	if(ocaInvitationCode == ""){
-		alert("请填写邀请码");
-		$("#spinner").hide();
-		return false;
-	}
-	var ocaUserName = $("#ocaUserName").val();
-	if(ocaUserName == ""){
-		alert("请填写申请人姓名");
-		$("#spinner").hide();
-		return false;
-	}
-	var ocaUserPhone = $("#ocaUserPhone").val();
-	if(ocaUserPhone == ""){
-		alert("请填写手机号");
-		$("#spinner").hide();
-		return false;
-	}
-	var ocaUserNo = $("#ocaUserNo").val();
-	if(ocaUserNo == ""){
-		alert("请填写身份证号");
-		$("#spinner").hide();
-		return false;
-	}
-	var ocaStartDate = $("#ocaStartDate").val();
-	if(ocaStartDate == ""){
-		alert("请选择进校日期");
-		$("#ocaStartDate").focus();
-		$("#spinner").hide();
-		return false;
-	}
-	var ocaEndDate = $("#ocaEndDate").val();
-	if(ocaEndDate == ""){
-		alert("请选择离校日期");
-		$("#ocaEndDate").focus();
-		$("#spinner").hide();
-		return false;
-	}
-	var orderStartTime = (ocaStartDate+" 00:00:00");
-	var orderEndTime = (ocaEndDate+" 23:59:59");
-	var al = new Date(orderStartTime).getTime();
-	var bl = new Date(orderEndTime).getTime();
-	if(al >= bl) {
-		alert("进校时间必须小于离校时间");
-		$("#startTime").focus();
-		$("#spinner").hide();
-		return false;
-	}else{
-		$("#tempStartDate").val(orderStartTime);
-		$("#tempEndDate").val(orderEndTime);
-	}
-	var ocaUserState = $("input:checkbox[name='ocaUserState']:checked").length;
-	// if(ocaUserState == "" || ocaUserState <= 0){
-	// 	alert("至少选择一个当前身体状态");
-	// 	$("#spinner").hide();
-	// 	return false;
-	// }
-	// var ocaUserepidemic = $("input:checkbox[name='ocaUserepidemic']:checked").length;
-	// if(ocaUserepidemic == "" || ocaUserepidemic <= 0){
-	// 	alert("至少选择一个疫情接触情况");
-	// 	$("#spinner").hide();
-	// 	return false;
-	// }
-	var ocaSubjectMatter = $("#ocaSubjectMatter").val();
-	if(ocaSubjectMatter == ""){
-		alert("请填写进校原因/目的");
-		$("#spinner").hide();
-		return false;
-	}
-	var ocaPlaceOfAdmission = $("#ocaPlaceOfAdmission").val();
-	if(ocaPlaceOfAdmission == ""){
-		alert("请选择入校地点");
-		$("#spinner").hide();
-		return false;
-	}
-	var ocaUserWay = $("#ocaUserWay").val();
-	var ocaLicensePlate = $("#ocaLicensePlate").val();
-	if(ocaUserWay == "驱车前往" && ocaLicensePlate == ""){
-		alert("驱车前往请填写车牌号");
-		$("#spinner").hide();
-		return false;
-	}
-	var falg = false;
-	var falg1 = false;
-	var falg2 = false;
-	var falg3 = false;
+	
 	submitAppointment()
 	// var isfile = $("#filewb").get(0).files[0];
 	// if (!isfile){
@@ -720,7 +506,7 @@ function submitAppointment() {
 	console.log(encode,decode);
 	console.log($("#dataFrom").parseForm());
 	let info = $("#dataFrom").parseForm()
-	window.sessionStorage.setItem(info.ocaUserNo,JSON.stringify(info))
+	window.localStorage.setItem(info.ocaUserNo,JSON.stringify(info))
 	setTimeout(()=>{
 		$("#spinner").hide();
 		return false;

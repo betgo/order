@@ -240,8 +240,8 @@ function onClick(id) {
 }
 
 function stepsIndex(index,value){
-	var ocaStatus = 1;
-	var ocaAuditorStatus = 1;
+	var ocaStatus = value.ocaStatus;
+	var ocaAuditorStatus =value.ocaStatus;
 	steps({
 	    el: "#steps"+index,
 	    data: [
@@ -261,12 +261,18 @@ function query(){
 		return false;
 	}
 	$("#content").show();
-	var rawInfo = sessionStorage.getItem(ocaUserNo)
-	
+	var rawInfo = localStorage.getItem(ocaUserNo)
+	var date = new Date();
+	var tomorrow = new Date(new Date().setDate(new Date().getDate()+1));
 	var value = JSON.parse(rawInfo)
+	value.ocaStatus=1
+	value.ocaAuditorStatus=1
+	var value0 = {...value} 
+	value0.ocaStatus=0
+	value0.ocaAuditorStatus=0
 	console.log(value);
 	if(value){
-		
+		// var msg = "邀请人未审核";
 		var msg = "完成";
 					$("#content").append("<div style=\"margin-top: 15px\">\r\n" + 
 				"				<div class=\"jieguoDiv\">\r\n" + 
@@ -274,20 +280,40 @@ function query(){
 				"						<tr><td colspan=\"2\" style=\"font-size: initial;font-weight: bold;color: black;\">姓名："+(value.ocaUserName == null ? "" : value.ocaUserName)+"</td></tr>\r\n" + 
 				"						<tr><td colspan=\"2\" style=\"font-size: initial;font-weight: bold;color: black;\">身份证号："+(value.ocaUserNo == null ? "" : value.ocaUserNo)+"</td></tr>\r\n" + 
 				"						<tr><td colspan=\"2\" style=\"font-size: initial;font-weight: bold;color: black;\">预约类型："+(value.ocaCheckerType == 1 ? "临时进校" :"合作单位" )+"</td></tr>\r\n" + 
-				"						<tr><td colspan=\"2\">申请入校日期："+(new Date(value.ocaStartDate).format("yyyy-MM-dd hh:mm:ss"))+"</td></tr>\r\n" + 
-				"						<tr><td colspan=\"2\">申请离校时间："+(new Date(value.ocaEndDate).format("yyyy-MM-dd hh:mm:ss"))+"</td></tr>\r\n" + 
+				"						<tr><td colspan=\"2\">申请入校日期："+(tomorrow.format("yyyy-MM-dd "))+"00:00:00</td></tr>\r\n" + 
+				"						<tr><td colspan=\"2\">申请离校时间："+(tomorrow.format("yyyy-MM-dd "))+"23:59:59</td></tr>\r\n" + 
 				"						<tr><td colspan=\"2\">入校地点："+(value.ocaPlaceOfAdmission == null ? "" : value.ocaPlaceOfAdmission)+"</td></tr>\r\n" + 
 				(value.ocaUserWay == "驱车前往" ? "<tr><td>进校方式：驱车前往</td><td>车牌号："+(value.ocaLicensePlate)+"</td></tr>\r\n" : "") +
 				(value.ocaUserWay == "步行前往" ? "<tr><td colspan=\"2\">进校方式：徒步前往</td></tr>\r\n" : "") +
 				"						<tr><td colspan=\"2\" style=\"font-size: initial;font-weight: bold;color: black;\">邀请人："+(value.PiName == null ? "" :value.PiName )+"</td></tr>\r\n" + 
 				"						<tr><td colspan=\"2\" style=\"font-size: initial;font-weight: bold;color: black;\">邀请人部门："+(value.DepartmentName == null ? "" :value.DepartmentName )+"</td></tr>\r\n" + 
-								
-				"						<tr><td colspan=\"2\">审核进度："+msg+"</td></tr>\r\n" + 
+							
+				"						<tr><td colspan=\"2\">审核进度：邀请人未审核</td></tr>\r\n" + 
 				"					</table>\r\n" + 
 				"					<div id=\"steps"+0+"\"></div>\r\n" + 
 				"				</div>\r\n" + 
 				"			</div>");
-				stepsIndex(0,value);
+				$("#content").append("<div style=\"margin-top: 15px\">\r\n" + 
+				"				<div class=\"jieguoDiv\">\r\n" + 
+				"					<table>\r\n" + 
+				"						<tr><td colspan=\"2\" style=\"font-size: initial;font-weight: bold;color: black;\">姓名："+(value.ocaUserName == null ? "" : value.ocaUserName)+"</td></tr>\r\n" + 
+				"						<tr><td colspan=\"2\" style=\"font-size: initial;font-weight: bold;color: black;\">身份证号："+(value.ocaUserNo == null ? "" : value.ocaUserNo)+"</td></tr>\r\n" + 
+				"						<tr><td colspan=\"2\" style=\"font-size: initial;font-weight: bold;color: black;\">预约类型："+(value.ocaCheckerType == 1 ? "临时进校" :"合作单位" )+"</td></tr>\r\n" + 
+				"						<tr><td colspan=\"2\">申请入校日期："+(new Date().format("yyyy-MM-dd "))+"00:00:00</td></tr>\r\n" + 
+				"						<tr><td colspan=\"2\">申请离校时间："+(new Date().format("yyyy-MM-dd "))+"23:59:59</td></tr>\r\n" + 
+				"						<tr><td colspan=\"2\">入校地点："+(value.ocaPlaceOfAdmission == null ? "" : value.ocaPlaceOfAdmission)+"</td></tr>\r\n" + 
+				(value.ocaUserWay == "驱车前往" ? "<tr><td>进校方式：驱车前往</td><td>车牌号："+(value.ocaLicensePlate)+"</td></tr>\r\n" : "") +
+				(value.ocaUserWay == "步行前往" ? "<tr><td colspan=\"2\">进校方式：徒步前往</td></tr>\r\n" : "") +
+				"						<tr><td colspan=\"2\" style=\"font-size: initial;font-weight: bold;color: black;\">邀请人："+(value.PiName == null ? "" :value.PiName )+"</td></tr>\r\n" + 
+				"						<tr><td colspan=\"2\" style=\"font-size: initial;font-weight: bold;color: black;\">邀请人部门："+(value.DepartmentName == null ? "" :value.DepartmentName )+"</td></tr>\r\n" + 
+							
+				"						<tr><td colspan=\"2\">审核进度：完成</td></tr>\r\n" + 
+				"					</table>\r\n" + 
+				"					<div id=\"steps"+1+"\"></div>\r\n" + 
+				"				</div>\r\n" + 
+				"			</div>");
+				stepsIndex(0,value0);
+				stepsIndex(1,value);
 	}
 	
 	// $.ajax({
